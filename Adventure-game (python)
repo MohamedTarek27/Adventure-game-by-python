@@ -1,0 +1,148 @@
+
+def introScene(): # finction for the began of the game to make the user choose the game that he will play
+    directions = ["forest", "cave"]
+    print("Welcome to the Adventure Game!")
+    print("You find yourself at a crossroads.")
+    print("You can choose to enter the forest or the cave.")
+    print("Which way will you go? (Type 'forest' or 'cave')")
+
+    choice = input().lower()
+    if choice == "forest": # if condition to choose cave or forest
+        forestScene()
+    elif choice == "cave":
+        caveScene()
+    else:
+        print("Invalid choice. Please enter 'forest' or 'cave'.")
+        introScene()
+
+def forestScene():
+    print("You enter the dark forest and encounter a hungry lion!")
+    print("What will you do?")
+    print("1. Run away put input 1")
+    print("2. Climb a tree put input 2")
+    print("3. Face the lion put input 3")
+
+    choice = input()
+    if choice == "1":
+        print("You run away and escape the lion. Well done!")
+    elif choice == "2":
+        print("You climb a tree, but the lion waits below. You're safe for now.")
+    elif choice == "3":
+        print("You bravely face the lion. It roars but doesn't attack. You survive!")
+    else:
+        print("Invalid choice. Try again.")
+        forestScene()
+
+def caveScene():
+    print("You enter the dark cave and discover a sleeping bear.")
+    print("What will you do?")
+    print("1. Sneak past the bear put input 1")
+    print("2. Wake up the bear put input 2")
+    print("3. Offer it food put input 3")
+
+    choice = input()
+    if choice == "1":
+        print("You sneak past the bear successfully. Phew!")
+    elif choice == "2":
+        print("You wake up the bear, and it chases you out of the cave. Be more careful next time!")
+    elif choice == "3":
+        print("You offer the bear some food. It eats peacefully, and you exit the cave.")
+    else:
+        print("Invalid choice. Try again.")
+        caveScene()
+
+if __name__ == '__main__':
+
+
+
+    while True:
+        introScene()
+        print("\nDo you want to play again? (Type 'yes' or 'no')")
+        play_again = input().lower()
+        if play_again != "yes":
+            print(" you win Thanks for playing! Goodbye.")
+            break
+
+
+
+
+
+
+import random
+import time
+
+
+def forest_scenario(): # function for the first scenario
+    print("You are in a forest.")
+    time.sleep(1)
+    encounter = random.choice(["lion", "tiger"])
+    if encounter == "lion":
+        print("A lion appears!")
+    else:
+        print("A tiger appears!")
+    time.sleep(1)
+    action = input("Do you want to (1) run or (2) fight? ")
+    if action == "1":
+        print("You run away safely!")
+        return 10  # Points for running away
+    elif action == "2":
+        if encounter == "lion":
+            print("The lion is too strong. You lose!")
+            return -10  # Points for losing
+        else:
+            print("You manage to scare the tiger away!")
+            return 20  # Points for winning
+    else:
+        print("Invalid choice. You lose!")
+        return -10  # Points for invalid choice
+
+
+def cave_scenario(): #function for the second scenario
+    print("You are in a cave.")
+    time.sleep(1)
+    encounter = random.choice(["bears", "bats"])
+    if encounter == "bears":
+        print("A group of bears appears!")
+    else:
+        print("A swarm of bats appears!")
+    time.sleep(1)
+    action = input("Do you want to (1) hide or (2) fight? ")
+    if action == "1":
+        print("You hide successfully!")
+        return 10  # Points for hiding
+    elif action == "2":
+        if encounter == "bears":
+            print("The bears are too strong. You lose!")
+            return -10  # Points for losing
+        else:
+            print("You manage to scare the bats away!")
+            return 20  # Points for winning
+    else:
+        print("Invalid choice. You lose!")
+        return -10  # Points for invalid choice
+
+
+def play_game():
+    total_score = 0
+    while True:
+        print("Welcome to the Adventure Game!")
+        time.sleep(1)
+        scenario = random.choice(["forest", "cave"])
+        if scenario == "forest":
+            total_score += forest_scenario()
+        else:
+            total_score += cave_scenario()
+
+        print(f"Your total score is: {total_score}")
+
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            break
+
+    if total_score > 0:
+        print("Congratulations! You won the game!")
+    else:
+        print("Sorry, you lost the game. Better luck next time!")
+
+
+play_game()
